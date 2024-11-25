@@ -34,7 +34,7 @@
     };
 
     homeConfigurations = {
-        "vaaty@laptop" =  home-manager.lib.homeManagerConfiguration {
+        "vaaty@laptop" =  inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = { inherit nixpkgs system; };
         modules = [ 
@@ -42,6 +42,6 @@
           ./nixos/home.nix
         ];
       };
-      }
+    };
   };
 }
