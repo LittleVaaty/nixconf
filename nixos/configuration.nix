@@ -114,13 +114,6 @@
     rofi-wayland
   ];
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      vaaty = import ./home.nix;
-    };
-  };
-
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
