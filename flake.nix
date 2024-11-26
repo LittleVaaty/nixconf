@@ -34,12 +34,11 @@
     };
 
     homeConfigurations = {
-        "vaaty@laptop" =  inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        extraSpecialArgs = { inherit nixpkgs system; };
+        "vaaty@laptop" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
         modules = [ 
-          ./homeManagerModules/git.nix 
-          ./nixos/home.nix
+          ./homeManagerModules
         ];
       };
     };
