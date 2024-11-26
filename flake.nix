@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
   let
     system = "x86_64-linux";
 
@@ -34,8 +34,8 @@
     };
 
     homeConfigurations = {
-        "vaaty@laptop" = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      "vaaty@laptop" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
 
         modules = [ 
           ./homeManagerModules
