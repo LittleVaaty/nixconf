@@ -35,7 +35,7 @@
 
     homeConfigurations = {
       "vaaty@laptop" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        specialArgs = { inherit inputs system; };
 
         modules = [ 
           ./homeManagerModules
