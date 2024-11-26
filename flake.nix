@@ -34,7 +34,7 @@
     };
 
     homeConfigurations = {
-        "vaaty@laptop" = home-manager.lib.homeManagerConfiguration {
+        "vaaty@laptop" = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules = [ 
