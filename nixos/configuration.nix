@@ -118,6 +118,10 @@
     extraSpecialArgs = { inherit inputs; };
     users = {
       vaaty = import ./home.nix;
+      modules = [
+        ./home.nix
+        inputs.self.outputs.homeManagerModules.default
+      ];
     };
   };
 
