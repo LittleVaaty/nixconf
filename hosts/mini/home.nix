@@ -1,11 +1,9 @@
-{ config, pkgs, outputs, ... }:
-
+{ config, pkgs, ... }:
 {
-  imports = [outputs.homeManagerModules.default];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "vaaty";
-  home.homeDirectory = "/home/vaaty";
+  home.homeDirectory = "/Users/vaaty";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -21,7 +19,7 @@
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-    pkgs.hello
+    # pkgs.hello
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -69,7 +67,7 @@
   #  /etc/profiles/per-user/vaaty/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
+    # EDITOR = "emacs";
   };
 
   # Let Home Manager install and manage itself.
