@@ -9,7 +9,19 @@
     pkgs.tmux
     pkgs.mkalias
     pkgs.obsidian
+    pkgs.fish
+    pkgs.bottom
   ];
+
+  networking.hostName = "mini";
+
+  programs.fish.enable = true;
+  users.users = {
+    vaaty = {
+      home = "/Users/vaaty";
+      shell = pkgs.fish;
+    };
+  };
 
   fonts.packages = [
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono"]; })
@@ -23,6 +35,12 @@
         "spotify"
       ];
       onActivation.cleanup = "zap";
+      onActivation.autoUpdate = true;
+      onActivation.upgrade = true;
+    };
+
+  system.defaults = {
+      dock.autohide = true;
     };
 
   services.nix-daemon.enable = true;

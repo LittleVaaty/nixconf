@@ -11,6 +11,8 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    nix-colors.url = "github:misterio77/nix-colors";
+    stylix.url = "github:danth/stylix";
   };
   outputs = { self, nixpkgs, home-manager, nix-darwin, nix-homebrew, ... } @ inputs: 
   let
@@ -27,12 +29,12 @@
       };
     };
     #  Export Variables
-    stateVersion = "24.05"; # TODO: change stateVersion
-    username = "vaaty"; # TODO: change username
-    desktop = "yoitsu"; # TODO: Change Desktop name
-    laptop = "laptop"; # TODO: change Laptop name
-    mac = "jonathans-Mini"; # TODO: change Laptop name
-    system = "x86_64-linux"; # TODO: Rarely, change system architecture
+    stateVersion = "24.05";
+    username = "vaaty";
+    desktop = "desktop";
+    laptop = "laptop";
+    mac = "mini";
+    system = "x86_64-linux";
   in {
 
     darwinConfigurations."mini" = nix-darwin.lib.darwinSystem {
@@ -56,19 +58,11 @@
     #  Available through 'home-manager --flake .# your-username@your-hostname'
     homeConfigurations = {
       "${username}@${mac}" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs; #  > Our main home-manager configuration file <
+        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+
         modules = [./hosts/${mac}/home.nix];
-        extraSpecialArgs = let
-          hostname = mac;
-        in {
-          inherit
-            self
-            inputs
-            username
-            hostname
-            system
-            stateVersion
-            ;
+        extraSpecialArgs = {
+          inherit inputs;
         };
       };
       "${username}@${laptop}" = home-manager.lib.homeManagerConfiguration {

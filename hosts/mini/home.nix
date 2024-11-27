@@ -1,9 +1,16 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
+  imports = [
+    ../../home-manager/configs/default.nix
+    inputs.nix-colors.homeManagerModules.default
+    inputs.stylix.homeManagerModules.stylix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "vaaty";
   home.homeDirectory = "/Users/vaaty";
+
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -67,7 +74,7 @@
   #  /etc/profiles/per-user/vaaty/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
